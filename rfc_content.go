@@ -120,7 +120,7 @@ func (s *RFCContentCacheStore) cacheDirectory() (string, error) {
 		return s.CacheDirectory, nil
 	}
 
-	if dir := GetUserCacheDirectory(); dir != "" {
+	if dir := GetUserCacheDirectory("rfcs"); dir != "" {
 		return dir, nil
 	}
 

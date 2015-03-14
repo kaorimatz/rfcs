@@ -14,17 +14,17 @@ func GetHomeDirectory() string {
 	return os.Getenv("HOME")
 }
 
-func GetUserCacheDirectory() string {
+func GetUserCacheDirectory(appName string) string {
 	if baseDir := os.Getenv("XDG_CACHE_HOME"); baseDir != "" {
-		return filepath.Join(baseDir, "rfc")
+		return filepath.Join(baseDir, appName)
 	}
 
 	if user, err := user.Current(); err == nil {
-		return filepath.Join(user.HomeDir, ".cache", "rfc")
+		return filepath.Join(user.HomeDir, ".cache", appName)
 	}
 
 	if homeDir := GetHomeDirectory(); homeDir != "" {
-		return filepath.Join(homeDir, ".cache", "rfc")
+		return filepath.Join(homeDir, ".cache", appName)
 	}
 
 	return ""
